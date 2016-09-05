@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <regex>
-#include <tuple>
+#include <sstream>
 using namespace std;
 
 
@@ -25,6 +24,23 @@ int main () {
 
   return 0;
 }*/
+
+string removeNonAlpha(string s)
+{
+	string accumulate = "";
+	
+	for(int i = 0; i < s.length(); i++)
+	{
+		char c = s.at(i);
+		
+		if((c > 65 && c < 90) || (c > 97 && c < 122))
+		{
+			accumulate += c;
+		}
+	}
+	
+	return accumulate;
+}
 
 bool compare(string s, string m)
 {
@@ -51,18 +67,32 @@ int which(string s)
 	return -1;
 }
 
-bool isInt(string s)
+string isInt(string s)
 {
-	for(int i = 0; i < s.length(); i++)
+	int i = 0;
+	
+	while(s.at(i) <  48 || s.at(i) > 57)
+	{
+		i++;
+		if(i >= s.length())
+		{
+			return "";
+		}
+	}
+	
+	string accumulate = "";
+	
+	for(; i < s.length(); i++)
 	{
 		char c = s.at(i);
 		if(c <  48 || c > 57)
 		{
-			return false;
+			return "";
 		}
+		accumulate += c;
 	}
 	
-	return true;
+	return accumulate;
 }
 
 int main (int argc, const char * argv[]) {
@@ -76,6 +106,7 @@ int main (int argc, const char * argv[]) {
     
 	string line;
 	ifstream myfile (input);
+	
 	if (myfile.is_open())
 	{
 		while ( getline (myfile,line) )
@@ -87,12 +118,17 @@ int main (int argc, const char * argv[]) {
 				
 				while(std::getline(ss, current, ' ')) 
 				{
-					if(isInt(current))
+					string numberextract = isInt(current);
+					if(numberextract.compare("") != 0)
 					{
-						int num = stoi(current);
+						int num = stoi(numberextract);
 						std::getline(ss, current, ' ');
 						
-						switch(which(current))
+						string removed = removeNonAlpha(current);
+						
+						cout << num << " " << removed << endl;
+						
+						switch(which(removed))
 						{
 							case 0:	minutes += num;
 									break;
