@@ -99,8 +99,6 @@ int main (int argc, const char * argv[]) {
 							case 2:	days += num;
 									break;
 						}
-						
-						cout << current << endl;
 					}
 				}
 
