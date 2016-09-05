@@ -71,9 +71,11 @@ int main (int argc, const char * argv[]) {
     int hours = 0;
     int days = 0;
     
+    string input = argv[1];
+    input = input.substr(6);
     
 	string line;
-	ifstream myfile (argv[1]);
+	ifstream myfile (input);
 	if (myfile.is_open())
 	{
 		while ( getline (myfile,line) )
