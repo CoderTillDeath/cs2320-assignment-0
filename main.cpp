@@ -52,7 +52,13 @@ int main (int argc, const char * argv[]) {
 		{
 			if(line.at(0) != '#')
 			{
-				cout << line << endl;
+				stringstream ss(line);
+				string current;
+				
+				while(std::getline(ss, current, ' ')) {
+					std::cout << current << '\n';
+				}
+
 			}
 		}
 		myfile.close();
