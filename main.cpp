@@ -36,6 +36,19 @@ tuple<int,char> getInfo(string s)
 	return make_tuple(num,result);
 }
 
+bool isInt(string s)
+{
+	for(int i = 0; i < s.length(); i++)
+	{
+		char c = s.at(i);
+		if(c <  48 || c > 57)
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
 
 int main (int argc, const char * argv[]) {
 	
@@ -56,7 +69,10 @@ int main (int argc, const char * argv[]) {
 				string current;
 				
 				while(std::getline(ss, current, ' ')) {
-					std::cout << current << '\n';
+					if(isInt(current))
+					{
+						cout << current << endl;
+					}
 				}
 
 			}
