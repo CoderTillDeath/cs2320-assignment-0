@@ -26,14 +26,29 @@ int main () {
   return 0;
 }*/
 
-tuple<int,char> getInfo(string s)
+bool compare(string s, string m)
 {
-	int num = stoi(s);
-	string value = s.substr(s.find(" ") + 1);
+	return s.compare(m) == 0 || s.compare(m + "s") == 0;
+}
+
+int which(string s)
+{
+	if(compare(s,"minute"))
+	{
+		return 0;
+	}
 	
-	char result = value.at(1);
+	if(compare(s,"hour"))
+	{
+		return 1;
+	}
 	
-	return make_tuple(num,result);
+	if(compare(s,"day"))
+	{
+		return 2;
+	}
+	
+	return -1;
 }
 
 bool isInt(string s)
@@ -68,9 +83,23 @@ int main (int argc, const char * argv[]) {
 				stringstream ss(line);
 				string current;
 				
-				while(std::getline(ss, current, ' ')) {
+				while(std::getline(ss, current, ' ')) 
+				{
 					if(isInt(current))
 					{
+						int num = stoi(current);
+						std::getline(ss, current, ' ');
+						
+						switch(which(current))
+						{
+							case 0:	minutes += num;
+									break;
+							case 1:	hours += num;
+									break;
+							case 2:	days += num;
+									break;
+						}
+						
 						cout << current << endl;
 					}
 				}
