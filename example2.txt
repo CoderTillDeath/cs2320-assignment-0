@@ -1,0 +1,5 @@
+SA person of interest travels 20 minutes each day.
+Meredith travels 1 hour by train to visit Derek. However, Derek can visit her in one minute.
+#this line is a comment because it starts with #
+#for example, this comment line contains 1000 minutes but they do not get added anywhere
+She can drink 3 minutemaid bottles a day.
