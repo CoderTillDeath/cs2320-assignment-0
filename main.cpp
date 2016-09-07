@@ -33,7 +33,7 @@ string removeNonAlpha(string s)
 	{
 		char c = s.at(i);
 		
-		if((c > 65 && c < 90) || (c > 97 && c < 122))
+		if((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		{
 			accumulate += c;
 		}
@@ -100,9 +100,12 @@ int main (int argc, const char * argv[]) {
     int minutes = 0;
     int hours = 0;
     int days = 0;
-    
+    /*
     string input = argv[1];
     input = input.substr(6);
+    */
+    
+    string input = "input.txt";
     
 	string line;
 	ifstream myfile (input);
@@ -126,7 +129,7 @@ int main (int argc, const char * argv[]) {
 						
 						string removed = removeNonAlpha(current);
 						
-						cout << num << " " << removed << endl;
+						// cout << num << " " << removed << endl;
 						
 						switch(which(removed))
 						{
@@ -145,7 +148,7 @@ int main (int argc, const char * argv[]) {
 		myfile.close();
 	}
     
-    cout << "Minutes: " << minutes << endl;
-    cout << "Hours: " << hours << endl;
-    cout << "Days: " << days << endl;
+    cout << "Minutes:" << minutes << endl;
+    cout << "Hours:" << hours << endl;
+    cout << "Days:" << days << endl;
 }
