@@ -69,6 +69,8 @@ int which(string s)
 
 string isInt(string s)
 {
+	if(s.length() == 0) return "";
+	
 	int i = 0;
 	
 	while(s.at(i) <  48 || s.at(i) > 57)
@@ -114,6 +116,7 @@ int main (int argc, const char * argv[]) {
 	{
 		while ( getline (myfile,line) )
 		{
+			cout << line << endl;
 			if(line.at(0) != '#')
 			{
 				stringstream ss(line);
@@ -121,6 +124,7 @@ int main (int argc, const char * argv[]) {
 				
 				while(std::getline(ss, current, ' ')) 
 				{
+					cout << "\"" << current << "\"" << endl;
 					string numberextract = isInt(current);
 					if(numberextract.compare("") != 0)
 					{
@@ -128,8 +132,6 @@ int main (int argc, const char * argv[]) {
 						std::getline(ss, current, ' ');
 						
 						string removed = removeNonAlpha(current);
-						
-						// cout << num << " " << removed << endl;
 						
 						switch(which(removed))
 						{
@@ -141,6 +143,7 @@ int main (int argc, const char * argv[]) {
 									break;
 						}
 					}
+					cout << "\"" << current << "\"" << endl;
 				}
 
 			}
